@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class ArticleController {
     private final ArticleService articleService;
 
-    @GetMapping({"/articles"})
+    @GetMapping("/articles")
     public String list(Model model){
         model.addAttribute("articles",articleService.findAll());
         return "article-list";
