@@ -1,10 +1,92 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>로그인</title></head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>로그인</title>
+<style>
+  body {
+    background-color: #f0f4f8;
+    margin: 0;
+    font-family: sans-serif;
+     display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+  }
+
+    header {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      font-weight: bold;
+    }
+
+    main {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 320px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 1.5rem;
+    }
+
+    form div {
+      margin-bottom: 1rem;
+      text-align: left;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-top: 0.3rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.7rem;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .btn {
+      display: block;
+      margin-top: 1rem;
+      padding: 0.7rem;
+      text-decoration: none;
+      border-radius: 6px;
+      text-align: center;
+    }
+
+    .btn-primary {
+      background-color: #db4437; /* 구글 빨강 */
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: #a33227;
+    }
+</style>
+</head>
 <body>
 <header>
-  <a href="/" class="brand">🌀 임시로고</a>
+  <a href="/" class="brand">🌀</a>
 </header>
 <main>
   <h1>로그인</h1>

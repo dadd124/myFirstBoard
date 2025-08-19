@@ -6,10 +6,99 @@
   <title th:text="${article.title}">게시글</title>
   <meta name="_csrf" th:content="${_csrf.token}">
   <meta name="_csrf_header" th:content="${_csrf.headerName}">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f3f4f6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: #007bff;
+      padding: 1rem 2rem;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header .brand {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .article-container {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 800px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+    }
+
+    .content {
+      white-space: pre-line; /* 줄바꿈 유지 */
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .actions {
+      display: flex;
+      gap: 0.8rem;
+      justify-content: flex-start; /* 왼쪽 정렬 */
+    }
+
+    .actions a,
+    .actions button {
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    .edit-btn {
+      background-color: #ffc107;
+      color: #000;
+    }
+
+    .delete-btn {
+      background-color: #dc3545;
+      color: #fff;
+    }
+
+    .list-btn {
+      background-color: #6c757d;
+      color: #fff;
+    }
+  </style>
 </head>
 <body>
 <header>
-  <a href="/" class="brand">🌀 임시로고</a>
+  <a href="/" class="brand">🌀</a>
   <div>
       <span sec:authorize="isAnonymous()">
         <a href="/login">로그인</a>
@@ -25,16 +114,26 @@
   </div>
 </header>
 <main>
-  <h1 th:text="${article.title}">제목</h1>
-  <input type="hidden" id="article-id" th:value="${article.id}">
-  <div th:text="${article.content}">내용</div>
+  <div class="article-container">
+    <!-- 제목 -->
+    <h1 th:text="${article.title}">제목</h1>
+    <input type="hidden" id="article-id" th:value="${article.id}">
 
-  <div th:if="${isOwner}">
-    <a th:href="@{'/articles/' + ${article.id} + '/edit'}" id="modify-btn-link">수정</a>
-    <button id="delete-btn">삭제</button>
+    <!-- 내용 -->
+    <div class="content" th:text="${article.content}">내용</div>
+
+    <!-- 버튼 영역 -->
+    <div class="actions">
+      <a href="/articles" class="list-btn">목록</a>
+      <span th:if="${isOwner}">
+        <a th:href="@{'/articles/' + ${article.id} + '/edit'}" class="edit-btn">수정</a>
+        <form method="post" th:action="@{'/articles/' + ${article.id} + '/delete'}" style="display:inline;">
+          <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+          <button type="button" class="delete-btn" id="delete-btn">삭제</button>
+        </form>
+      </span>
+    </div>
   </div>
-
-  <p><a href="/articles">목록</a></p>
 </main>
 <script src="/js/article.js" defer></script>
 </body>

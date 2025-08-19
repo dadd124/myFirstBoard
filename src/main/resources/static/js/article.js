@@ -18,7 +18,7 @@ const { header, token } = csrf();
       credentials: 'same-origin'
     });
     if (!res.ok) return alert('삭제 실패: ' + res.status);
-    alert('삭제가 완료되었습니다.');
+    alert('삭제가 완료되었습니다.');`1`
     location.replace('/articles');
   });
 }
